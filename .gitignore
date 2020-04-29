@@ -72,5 +72,6 @@ fabric.properties
 
 # Custom
 venv/
-info.txt
+data.txt
+*.csv
 *.jpg
