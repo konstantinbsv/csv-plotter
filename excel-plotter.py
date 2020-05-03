@@ -1,12 +1,16 @@
 import csv
 import os.path
 import sys
+import re
+import matplotlib.pyplot
 
+# regex data format definition
+RE_DATA = r'(\(\d{4}\))(\d.\d+)'
 # input/output definitions
 RAW_DATA_FILE = 'data.txt'
 CSV_DATA_FILE = 'csv_data.csv'
-FIELDNAMES = ['0000', '0001', '0010', '0011', '0100', '0101',
-              '0110', '0111', '1000', '1001', '1010', '1011', '1100']
+FIELDNAMES = ['(0000)', '(0001)', '(0010)', '(0011)', '(0100)', '(0101)',
+              '(0110)', '(0111)', '(1000)', '(1001)', '(1010)', '(1011)', '(1100)']
 
 # check if data.txt exists
 if not os.path.exists(RAW_DATA_FILE):
@@ -14,8 +18,16 @@ if not os.path.exists(RAW_DATA_FILE):
     sys.exit()
 
 with open(RAW_DATA_FILE, 'r') as raw_data:
-    clean = [line.strip().replace('(', '') for line in raw_data]    # remove extraneous characters
-    lines = [line.split(')') for line in clean if line]             # split at ')' and remove empty lines
+    clean = [line.strip() for line in raw_data]                     # remove extraneous characters
+    # lines = [line.split(')') for line in clean if line]             # split at ')' and remove empty lines
+
+    lines = []
+    for line in clean:
+        re_groups = re.search(RE_DATA, line)
+        if re_groups:
+            designator = re_groups.group(1)
+            data = re_groups.group(2)
+            lines.append([designator, data])
 
     data_dict = [{line[0]:line[1]} for line in lines]               # convert to dictionary
 
