@@ -22,6 +22,7 @@ if not os.path.exists(RAW_DATA_FILE):
     sys.exit()
 
 with open(RAW_DATA_FILE, 'r') as raw_data:
+    print('Reading ' + RAW_DATA_FILE + '...')
     clean = [line.strip() for line in raw_data]                       # remove extraneous characters
     # lines = [line.split(')') for line in clean if line]             # split at ')' and remove empty lines
 
@@ -50,11 +51,13 @@ with open(RAW_DATA_FILE, 'r') as raw_data:
 
     # create CSV (overwrite if it already exists)
     with open(CSV_DATA_FILE, 'w', newline='') as csv_file:
+        print('Creating CSV...')
         csv_writer = csv.DictWriter(csv_file, fieldnames=FIELDNAMES, delimiter=',')
         csv_writer.writeheader()
         csv_writer.writerows(list_of_dicts)
 
 # create plots
+print('Creating plots...')
 for field in FIELDNAMES:
     sens = [float(line.get(field, 0)) for line in list_of_dicts if line]
     title = field.strip('="')   # get plot title from fieldnames
@@ -65,3 +68,4 @@ for field in FIELDNAMES:
     plt.xlabel(X_LABEL)
     plt.savefig(title)          # saves as PNG by default
 
+print('Done!')
