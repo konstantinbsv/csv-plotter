@@ -75,3 +75,4 @@ venv/
 data.txt
 *.csv
 *.jpg
+*.png
