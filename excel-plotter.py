@@ -13,6 +13,8 @@ FIELDNAMES = ['=\"(0000)\"', '=\"(0001)\"', '=\"(0010)\"', '=\"(0011)\"', '=\"(0
               '=\"(0110)\"', '=\"(0111)\"', '=\"(1000)\"', '=\"(1001)\"', '=\"(1010)\"', '=\"(1011)\"', '=\"(1100)\"']
 # plot definitions
 PLOT_SIZE = (10, 6)     # in hundreds of pixels
+Y_LABEL = 'picoFarads'
+X_LABEL = 'sample #'
 
 # check if data.txt exists
 if not os.path.exists(RAW_DATA_FILE):
@@ -52,14 +54,14 @@ with open(RAW_DATA_FILE, 'r') as raw_data:
         csv_writer.writeheader()
         csv_writer.writerows(list_of_dicts)
 
-
+# create plots
 for field in FIELDNAMES:
     sens = [float(line.get(field, 0)) for line in list_of_dicts if line]
-    title = field.strip('="')
+    title = field.strip('="')   # get plot title from fieldnames
     fig = plt.figure(figsize=PLOT_SIZE)
     plt.plot(sens)
     plt.title(title)
-    plt.ylabel('picoFarads')
-    plt.xlabel('Sample number')
-    plt.savefig(title)
+    plt.ylabel(Y_LABEL)
+    plt.xlabel(X_LABEL)
+    plt.savefig(title)          # saves as PNG by default
 
