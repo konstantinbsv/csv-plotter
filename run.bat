@@ -1,1 +1,1 @@
-pipenv run python .\excel-plotter.py
+pipenv run python .\csv-plotter.py
