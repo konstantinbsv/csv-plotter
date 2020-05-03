@@ -9,8 +9,8 @@ RE_DATA = r'(\(\d{4}\))(\d.\d+)'
 # input/output definitions
 RAW_DATA_FILE = 'data.txt'
 CSV_DATA_FILE = 'csv_data.csv'
-FIELDNAMES = ['(0000)', '(0001)', '(0010)', '(0011)', '(0100)', '(0101)',
-              '(0110)', '(0111)', '(1000)', '(1001)', '(1010)', '(1011)', '(1100)']
+FIELDNAMES = ['=\"(0000)\"', '=\"(0001)\"', '=\"(0010)\"', '=\"(0011)\"', '=\"(0100)\"', '=\"(0101)\"',
+              '=\"(0110)\"', '=\"(0111)\"', '=\"(1000)\"', '=\"(1001)\"', '=\"(1010)\"', '=\"(1011)\"', '=\"(1100)\"']
 
 # check if data.txt exists
 if not os.path.exists(RAW_DATA_FILE):
@@ -25,7 +25,7 @@ with open(RAW_DATA_FILE, 'r') as raw_data:
     for line in clean:
         re_groups = re.search(RE_DATA, line)
         if re_groups:
-            designator = re_groups.group(1)
+            designator = '=\"' + re_groups.group(1) + '\"'
             data = re_groups.group(2)
             lines.append([designator, data])
 
