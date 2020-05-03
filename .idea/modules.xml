@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Excel-Plotter.iml" filepath="$PROJECT_DIR$/.idea/Excel-Plotter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/csv-plotter.iml" filepath="$PROJECT_DIR$/.idea/csv-plotter.iml" />
     </modules>
   </component>
 </project>
