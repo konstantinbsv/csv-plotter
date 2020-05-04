@@ -3,6 +3,7 @@ import os.path
 import sys
 import re
 import matplotlib.pyplot as plt
+from statistics import mean
 
 # regex data format definition
 RE_DATA = r'(\(\d{4}\))(\d.\d+)'
@@ -13,6 +14,7 @@ FIELDNAMES = ['=\"(0000)\"', '=\"(0001)\"', '=\"(0010)\"', '=\"(0011)\"', '=\"(0
               '=\"(0110)\"', '=\"(0111)\"', '=\"(1000)\"', '=\"(1001)\"', '=\"(1010)\"', '=\"(1011)\"', '=\"(1100)\"']
 # plot definitions
 PLOT_SIZE = (10, 6)     # in hundreds of pixels
+OFFSET = 0.025            # offset from max/min value to top/bottom of y-scale
 Y_LABEL = 'picoFarads'
 X_LABEL = 'sample #'
 
@@ -62,6 +64,8 @@ for field in FIELDNAMES:
     sens = [float(line.get(field, 0)) for line in list_of_dicts if line]
     title = field.strip('="')   # get plot title from fieldnames
     fig = plt.figure(figsize=PLOT_SIZE)
+    # calculate y scale
+    plt.ylim(ymin=min(sens) - OFFSET, ymax=max(sens) + OFFSET)
     plt.plot(sens)
     plt.title(title)
     plt.ylabel(Y_LABEL)
