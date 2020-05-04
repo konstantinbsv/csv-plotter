@@ -1,9 +1,9 @@
+#! python3
 import csv
 import os.path
 import sys
 import re
 import matplotlib.pyplot as plt
-from statistics import mean
 
 # regex data format definition
 RE_DATA = r'(\(\d{4}\))(\d.\d+)'
@@ -59,8 +59,8 @@ with open(RAW_DATA_FILE, 'r') as raw_data:
         csv_writer.writerows(list_of_dicts)
 
 # create plots
-print('Creating plots...')
-for field in FIELDNAMES:
+print('Creating plots', end='')
+for idx, field in enumerate(FIELDNAMES, start=1):
     sens = [float(line.get(field, 0)) for line in list_of_dicts if line]
     title = field.strip('="')   # get plot title from fieldnames
     fig = plt.figure(figsize=PLOT_SIZE)
@@ -71,5 +71,7 @@ for field in FIELDNAMES:
     plt.ylabel(Y_LABEL)
     plt.xlabel(X_LABEL)
     plt.savefig(title)          # saves as PNG by default
+    sys.stdout.write('.')
+    sys.stdout.flush()
 
-print('Done!')
+print('\nDone!')
