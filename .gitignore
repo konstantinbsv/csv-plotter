@@ -73,6 +73,6 @@ fabric.properties
 # Custom
 venv/
 data.txt
-*.csv
-*.jpg
-*.png
+/*.csv
+/*.jpg
+/*.png
