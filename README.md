@@ -3,8 +3,8 @@ Creates a consolidated CSV file and MATLAB-style plots from _data.txt_ output ge
 
 ## Installation
 1. Download Python 3 from [here](https://www.python.org/downloads/).  
-    - Important: Select _Add Python 3.x the PATH_ when installing. 
-    ![PATH](https://github.com/konstantinbsv/csv-plotter/blob/master/images/add-python-to-path.jpg)
+    - Important: Select _Add Python 3.x to PATH_ when installing.  
+        <img src="./images/add-python-to-path.jpg" alt="PATH" width="350"/>
 2. [Download](https://github.com/konstantinbsv/csv-plotter/archive/master.zip) or clone this repository.
 3. Run _install-cp.bat_.
     - This will set up the Python virtual environment and install the necessary dependencies.
@@ -24,4 +24,4 @@ Creates a consolidated CSV file and MATLAB-style plots from _data.txt_ output ge
 
 
 ### Sample graph
-![Graph-(0101)](https://github.com/konstantinbsv/csv-plotter/blob/master/images/(0101).png) 
+![Graph-(0101)](./images/(0101).png) 
